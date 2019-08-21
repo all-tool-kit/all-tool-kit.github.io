@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Drug Toxicity Index (DTI) created by Srijan Verma</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+	body{
+		font-size: 15px;
+		padding: 3vw;
+		min-height: 100%;
+		background-color: beige;
+		font-family: Georgia, 'Times New Roman', Times, serif;
+	}
+
+	h1{
+		text-align: center;
+	}
+	.content{
+		margin: 2vw;
+		background-color: lightgreen;
+		padding: 2em;
+	}
+
+	.myInput{
+		padding-bottom: 4px; 
+		border: 1px solid black;
+	
+	}
+	
+	.output{
+		padding-bottom: 10px;
+		border: 1px solid black;
+	}
+
+.add-off-target{
+	padding: 1.25em;
+}
+	
+	.footer {
+		clear: both;
+    	position: relative;
+    	height: 135px;
+    	margin-top: -200px;
+		background-color: black;
+		text-align: center;
+	}
+	.myform{
+		padding: 1em;
+		
+	}
+</style>
+
+
+</head>
+<body>
+	<div class="container">
+		<h1 style="font-size: 50px; ">Drug Toxicity Index (DTI)</h1>
+		<div class="content">
+			<p style="font-size:18px; text-align: center;">
+				This portal allows the calculation of the Drug Toxicity Index (DTI) from basic Physicochemical (PhysChem), Pharmacodynamic (PD) and pharmacokinetic (PK) parameters for a potential drug candidate. 
+				
+				<br>
+				The main methodology and research article underlying the DTI concept & approach is  <a href=" https://pubs.rsc.org/en/content/articlelanding/2019/tx/c8tx00261d#!divAbstract" target="_blank">"Dixit V.A. A simple model to solve complex drug toxicity problem". Toxicology Research 2019, 8, 157-171 .</a>	
+			</p>
+			<img src="./cover-page-C8TX00261D.png" style="text-align: center; display: block;  margin-left: auto; margin-right: auto;" width="500" height="400">
+
+			<img src="./dti_equation_1.png" style="text-align: center; display: block;  margin-left: auto; margin-right: auto;" width="1000" height="50">
+
+			<p style="font-size:18px; text-align: center;">
+				The Drug Toxicity Index (DTI) is defined as the logarithmic sum of physicochemical (LogD), pharmacokinetic (PK) and pharmacodynamic (PD) contributions to toxicity scaled by absolute oral bioavailability (OBA), and molar dose (MD).
+				
+				<br>
+
+				 Here, Xt is potency (IC50 or MIC) at the target protein, Cmax is the maximum unbound plasma drug concentration, Xot is the binding affinity at the off-target (CYP450 isoforms, hERG channel and BSEP transporter), and log D is the ACD log D at pH = 7.4. PD and PK contributions to DTI are defined only when Xt, Cmax and Xot are greater than zero.
+					
+			</p>
+		
+		</div>
+
+	<div class="myform">
+	<form action="#">
+	<div >
+			<div class="col-md-8 myInput">
+					<h3 style="text-align: center;"> <b> Input </b> </h3>
+					<h4>
+							Enter different PD (on/off target), PK (Free Cmax) and Phychem parameters in the respective boxes below and hit calculate buttons to calculate different PD, PK and/or Phychem contributions or to calculate the total DTI.  
+					</h4>
+			<div class="col-md-6">
+				
+				<h1>
+						<b> </b>
+				</h1>
+			<div class="form-group">
+				<label for="input1">on Target IC50 (&#956M) [Xt]:</label>
+				<input type="text" class="form-control" id="input_Xt">
+			</div>
+			
+			<div class="form-group">
+				<label for="pwd">Free Cmax [Cmax]:</label>
+				<input type="text" class="form-control" id="input_Cmax">
+			</div>
+
+			<div class="form-group">
+				<label for="pwd">BSEP transporter (&#956M):</label>
+				<input type="text" class="form-control" id="input_BSEP">
+			</div>
+
+			<div class="form-group">
+					<label for="pwd">hERG channel (&#956M):</label>
+					<input type="text" class="form-control" id="input_hERG">
+			</div>
+
+			<div class="form-group">
+					<label for="pwd">CYP450 isoforms (&#956M):</label>
+					<input type="text" class="form-control" id="input_CYP450">
+			</div>
+
+			<div class="add-off-target">
+
+
+
+
+		</div>
+		</div>
+		<div class="col-md-6">
+
+				<h3>
+						<b>Additional off Target </b>
+				</h3>
+			<div class="form-group">
+					<label for="pwd">Additional off target 1 (&#956M):</label>
+					<input type="text" class="form-control" id="input_tar1">
+			</div>
+
+			<div class="form-group">
+						<label for="pwd">Additional off target 2 (&#956M):</label>
+						<input type="text" class="form-control" id="input_tar2">
+			</div>
+
+			<div class="form-group">
+				<label for="pwd">Additional off target 3 (&#956M):</label>
+				<input type="text" class="form-control" id="input_tar3">
+			</div>
+
+			<div class="form-group">
+				<label for="pwd">ACD log D at pH = 7.4:</label>
+				<input type="text" class="form-control" id="input_LogD">
+			</div>
+			<div class="form-group">
+				<label for="pwd">Molar Dose (MD):</label>
+				<input type="text" class="form-control" id="input_MD">
+			</div>
+			<div class="form-group">
+				<label for="pwd">Oral Bioavailability (OBA):</label>
+				<input type="text" class="form-control" id="input_OBA">
+			</div>
+
+
+		</div>
+		</div>
+	</div>
+		
+
+	<div class="col-md-4 output">
+		<h3 style="text-align: center;"><b>Output </b>  </h3>
+	  <div class="form-group">
+	    <label for="pwd">PD (Xt on Target) Toxicity Contribution:</label>
+	    <input type="text" class="form-control" id="output_PDOn" readonly="">
+	  </div>
+	  <input type="button" class="btn1 btn-primary" id="btn1" value="Calculate PD (on/Xt) Toxicity">
+	  <div class="form-group">
+	    <label for="pwd">PK Toxicity Contribution:</label>
+	    <input type="text" class="form-control" id="output_PK" readonly="">
+	  </div>
+	  <input type="button" class="btn2 btn-primary" id="btn2" value="Calculate PK (Free Cmax) Toxicity">
+	  <div class="form-group">
+	    <label for="pwd">PD (Xot off Target) Toxicity Contributions:</label>
+	    <input type="text" class="form-control" id="output_PDOff" readonly="">
+	  </div>
+	  <input type="button" class="btn3 btn-primary" id="btn3" value="Calculate PD (off) Toxicity">
+	  <div class="form-group">
+	    <label for="pwd">Physicochemical (LogD) Toxicity Contribution:</label>
+	    <input type="text" class="form-control" id="output_LogD" readonly="">
+	  </div>
+	  <input type="button" class="btn4 btn-primary" id="btn4" value="Calculate LogD Toxicity">
+	  <div class="form-group">
+	    <label for="pwd">Drug Toxicity Index (DTI):</label>
+	    <input type="text" class="form-control" id="output_DTI" readonly="">
+	  </div>
+	  <input type="button" class="btn5 btn-primary" id="btn5" value="Calculate DTI">
+	</div>
+	</form>
+	</table>
+	</div>
+
+	<div class="footer">
+		<p style="font-size:18px;color:darkorchid"> 
+			PI: <a  href="https://www.bits-pilani.ac.in/pilani/vaibhavdixit/profile" target="_blank">
+				Dr. Vaibhav A. Dixit</a>, Assistant Professor, <br>Department of Pharmacy, Birla Institute of Technology and Science, Pilani <a  href="https://www.bits-pilani.ac.in/" target="_blank">
+				(BITS Pilani)</a>,
+				<br>Vidya Vihar Campus, street number - 41, 
+				Pilani - 333031, Rajasthan, India.<br><br> This page is created and maintained by 
+			<a  href="https://www.linkedin.com/in/vermasrijan/" target="_blank">
+				Srijan Verma</a>, Final year B.Pharm student.				
+				
+		</p>
+	</div>
+
+	
+</div>
+</body>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+
+	$('.btn1').click(function(){
+		var input_Xt = parseFloat($('#input_Xt').val());
+        
+        if (input_Xt == 0){
+        	var total_Xt = 'No Contribution'
+        }
+        else{
+        	var total_Xt = (input_Xt*input_Xt + 1)/(input_Xt*10)
+            }	
+       
+		$('#output_PDOn').val(total_Xt);
+	})
+	$('.btn2').click(function(){
+		var input_Cmax = parseFloat($('#input_Cmax').val());
+	
+        if (input_Cmax == 0){
+        	var total_Cmax = 'No Contribution'
+        }
+        else{
+        	var total_Cmax = (input_Cmax*input_Cmax + 1)/(input_Cmax*10)
+            }	
+       
+
+		$('#output_PK').val(total_Cmax);
+	})
+	$('.btn3').click(function(){
+		var input_CYP450 = parseFloat($('#input_CYP450').val());
+		var input_hERG = parseFloat($('#input_hERG').val());
+		var input_BSEP = parseFloat($('#input_BSEP').val());
+		var input_tar1 = parseFloat($('#input_tar1').val());
+		var input_tar2 = parseFloat($('#input_tar2').val());
+		var input_tar3 = parseFloat($('#input_tar3').val());
+
+        if (input_CYP450 == 0){
+        	var out_CYP450 = 0
+        }
+        else{
+        	var out_CYP450 = (Math.exp(-input_CYP450)*Math.pow(input_CYP450,1/2)+10)/(Math.pow(input_CYP450,1/2))
+            }
+
+        if (input_hERG == 0){
+        	var out_hERG = 0
+        }
+        else{
+        	var out_hERG = (Math.exp(-input_hERG)*Math.pow(input_hERG,1/2)+10)/(Math.pow(input_hERG,1/2))
+            }
+
+        if (input_BSEP == 0){
+        	var out_BSEP = 0
+        }
+        else{
+        	var out_BSEP = (Math.exp(-input_BSEP)*Math.pow(input_BSEP,1/2)+10)/(Math.pow(input_BSEP,1/2))
+						}
+						
+				if (input_tar1 == 0){
+        	var out_tar1 = 0
+        }
+        else{
+        	var out_tar1 = (Math.exp(-input_tar1)*Math.pow(input_tar1,1/2)+10)/(Math.pow(input_tar1,1/2))
+            }	
+			
+				if (input_tar2 == 0){
+        	var out_tar2 = 0
+        }
+        else{
+        	var out_tar2 = (Math.exp(-input_tar2)*Math.pow(input_tar2,1/2)+10)/(Math.pow(input_tar2,1/2))
+            }	     	     	
+        
+				if (input_tar3 == 0){
+        	var out_tar3 = 0
+        }
+        else{
+        	var out_tar3 = (Math.exp(-input_tar3)*Math.pow(input_tar3,1/2)+10)/(Math.pow(input_tar3,1/2))
+            }	 
+
+        if (input_BSEP == 0 && input_CYP450 == 0 && input_hERG == 0){
+        	var total_Xot = 'No Contribution'
+        }
+        else{
+        	var total_Xot = (out_CYP450 + out_BSEP + out_hERG + out_tar1 + out_tar2 + out_tar3)
+            }	  
+
+	    $('#output_PDOff').val(total_Xot);
+	})
+	$('.btn4').click(function(){
+		var input_LogD = parseFloat($('#input_LogD').val());
+		
+        if (input_LogD == 1){
+        	var total_LogD = 'No Contribution'
+        }
+        else{
+        	var total_LogD = Math.exp(input_LogD)-(input_LogD*Math.exp(1))
+            }	
+        
+
+		$('#output_LogD').val(total_LogD);
+	})
+	$('.btn5').click(function(){
+		var input_Xt = parseFloat($('#input_Xt').val());
+		var input_Cmax = parseFloat($('#input_Cmax').val());
+		var input_CYP450 = parseFloat($('#input_CYP450').val());
+		var input_hERG = parseFloat($('#input_hERG').val());
+		var input_BSEP = parseFloat($('#input_BSEP').val());
+		var input_LogD = parseFloat($('#input_LogD').val());
+		var input_OBA = parseFloat($('#input_OBA').val());
+		var input_MD = parseFloat($('#input_MD').val());
+		var input_tar1 = parseFloat($('#input_tar1').val());
+		var input_tar2 = parseFloat($('#input_tar2').val());
+		var input_tar3 = parseFloat($('#input_tar3').val());
+		
+        if (input_Xt == 0){
+        	var total_Xt = 0
+        }
+        else{
+        	var total_Xt = (input_Xt*input_Xt + 1)/(input_Xt*10)
+            }
+
+        if (input_Cmax == 0){
+        	var total_Cmax = 0
+        }
+        else{
+        	var total_Cmax = (input_Cmax*input_Cmax + 1)/(input_Cmax*10)
+            }	
+       
+    	if (input_CYP450 == 0){
+        	var out_CYP450 = 0
+        }
+        else{
+        	var out_CYP450 = (Math.exp(-input_CYP450)*Math.pow(input_CYP450,1/2)+10)/(Math.pow(input_CYP450,1/2))
+						}
+						
+        if (input_hERG == 0){
+        	var out_hERG = 0
+        }
+        else{
+        	var out_hERG = (Math.exp(-input_hERG)*Math.pow(input_hERG,1/2)+10)/(Math.pow(input_hERG,1/2))
+						}
+						
+        if (input_BSEP == 0){
+        	var out_BSEP = 0
+        }
+        else{
+        	var out_BSEP = (Math.exp(-input_BSEP)*Math.pow(input_BSEP,1/2)+10)/(Math.pow(input_BSEP,1/2))
+						}
+						
+						if (input_tar1 == 0){
+        	var out_tar1 = 0
+        }
+        else{
+        	var out_tar1 = (Math.exp(-input_tar1)*Math.pow(input_tar1,1/2)+10)/(Math.pow(input_tar1,1/2))
+            }	
+			
+				if (input_tar2 == 0){
+        	var out_tar2 = 0
+        }
+        else{
+        	var out_tar2 = (Math.exp(-input_tar2)*Math.pow(input_tar2,1/2)+10)/(Math.pow(input_tar2,1/2))
+            }	     	     	
+        
+				if (input_tar3 == 0){
+        	var out_tar3 = 0
+        }
+        else{
+        	var out_tar3 = (Math.exp(-input_tar3)*Math.pow(input_tar3,1/2)+10)/(Math.pow(input_tar3,1/2))
+            }	 
+
+        if (input_BSEP == 0 && input_CYP450 == 0 && input_hERG == 0){
+        	var total_Xot = 0
+        }
+        else{
+        	var total_Xot = (out_CYP450 + out_BSEP + out_hERG + out_tar1 + out_tar2 + out_tar3)
+            }	  
+        
+        if (input_LogD == 1){
+        	var total_LogD = 0
+        }
+        else{
+        	var total_LogD = Math.exp(input_LogD)-(input_LogD*Math.exp(1))
+            }	
+        
+
+        var total_toxicity_contributions = (total_Xt + total_Cmax + total_Xot + total_LogD)
+        
+        var total_input_Log = (input_OBA*input_MD*total_toxicity_contributions)
+
+        var total_DTI = (Math.log10(total_input_Log))
+
+		$('#output_DTI').val(total_DTI);
+
+		$('#output_PDOn').val(total_Xt);
+
+		$('#output_PK').val(total_Cmax);
+
+		$('#output_PDOff').val(total_Xot);
+
+		$('#output_LogD').val(total_LogD);
+	})
+
+	});
+</script>
+</html>
